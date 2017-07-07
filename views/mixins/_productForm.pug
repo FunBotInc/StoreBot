@@ -1,0 +1,17 @@
+mixin productForm(product = {})
+    form(action=`/add/${product._id || ''}` method='POST' enctype='multipart/form-data')
+        label(for='name') Name
+        input(type='text' name='name' value=product.name)
+        label(for='description') Description
+        textarea(name='description')= product.description
+        label(for='price') Price
+        input(type='number' name='price' value=product.price)
+        label(for='thc') THC %
+        input(type='number' name='thc' value=product.thc)
+        label(for='cbd') CBD %
+        input(type='number' name='cbd' value=product.cbd)
+        label(for='photo') Photo
+            input(type='file' name='photo' accept='image/gif, image/png, image/jpeg')
+            if product.photo
+                img(src=`/uploads/${product.photo}` alt=store.name width=200)
+        input(type='submit' value='Save')

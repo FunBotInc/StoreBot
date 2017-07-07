@@ -5,4 +5,6 @@ const { catchErrors } = require('../handlers/errorHandlers');
 
 router.get('/', pageController.index);
 
+router.get('/add', pageController.addProduct);
+
 module.exports = router;
