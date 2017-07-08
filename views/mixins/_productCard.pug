@@ -1,0 +1,11 @@
+mixin productCard(product = {})
+    .product
+        .product__details
+            h3= product.name
+            div= product.description
+            div= product.price
+            div= product.thc
+            div= product.cbd
+        //- .product__ordering
+        //-     .product__actions
+        //-     button ORDER NOW!

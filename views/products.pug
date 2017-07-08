@@ -1,0 +1,12 @@
+extends layout
+
+include mixins/_productCard
+include mixins/_pagination
+
+block content
+    .inner
+        h2= title
+        .products
+            each product in products
+                +productCard(product)
+        +pagination(page, pages, count)

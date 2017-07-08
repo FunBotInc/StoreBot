@@ -25,14 +25,18 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: 'Please enter a percentage in for the CBD content'
     },
-    slug: { type: String },
-    photo: [ String ],
+    slug: String,
+    photo: String,
     // tags: [ String ],
     created: {
         type: Date,
         default: Date.now
     }
-});
+},{
+        toJSON: { virtuals: true},
+        toObject: { virtuals: true }
+    }
+);
 
 productSchema.pre('save', async function(next){
     if(!this.isModified('name')){

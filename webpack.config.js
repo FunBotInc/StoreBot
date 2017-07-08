@@ -31,7 +31,7 @@ const config = {
     entry: {
         App: './public/javascripts/app.js'
     },
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     output: {
         path: path.resolve(__dirname, 'public', 'dist'),
         filename: '[name].bundle.js'
@@ -41,9 +41,9 @@ const config = {
     },
     // plugins: [uglifiy],
     plugins: [
-        new ExtractTextPlugin('styles.css'),
+        new ExtractTextPlugin('style.css'),
     ]
 };
 
 process.noDeprecation = true;
-module.export = config;
+module.exports = config;
