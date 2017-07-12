@@ -37,8 +37,9 @@ exports.resize = async (req, res, next) => {
 
 exports.getProducts = async (req, res) => {
 
+    const pugFile = req.url.split('/')[1] === 'admin' ? 'adminProducts' : 'products';
     const page = req.params.page || 1;
-    const limit = 10;
+    const limit = pugFile === 'adminProducts' ? 10 : 6;
     const skip = (limit * page) - limit;
 
     const productsPromise = Product
@@ -56,7 +57,17 @@ exports.getProducts = async (req, res) => {
         res.redirect(`/products/page/${pages}`);
         return;
     }
-    res.render('products', {title: 'Products', products, count, page, pages});
+    res.render(pugFile, {title: 'Products', products, count, page, pages, pugFile});
+};
+
+exports.getProductBySlug = async (req, res, next) => {
+    
+    const product = await Product.findOne({slug: req.params.slug});
+    if(!product){
+        next();
+        return;
+    }
+    res.render('product', {title: `${product.name}`, product});
 };
 
 
@@ -68,12 +79,9 @@ exports.addProduct = (req, res) => {
 };
 
 exports.createProduct = async (req, res) => {
-    console.log(req.body);
     const product = await (new Product(req.body)).save();
     req.flash('success', 'New product has been added!');
-    // res.redirect(`/products/${product.slug}`);
-    // res.redirect('/products');
-    res.json(product);
+    res.redirect('/admin/products');
 };
 
 exports.updateProduct = async (req, res) => {
@@ -81,10 +89,18 @@ exports.updateProduct = async (req, res) => {
         new: true,
         runValidators: true
     }).exec();
-    res.redirect(`/products/${product._id}`);
+    res.redirect(`/admin/products/${product._id}`);
 };
 
 exports.editProduct = async (req, res) => {
     const product = await Product.findOne({_id: req.params.id});
     res.render('editProduct', {title: `Edit: ${product.name}`, product});
+}
+
+exports.updateProduct = async (req, res) => {
+    const product = await Product.findOneAndUpdate({_id: req.params.id}, req.body, {
+        new: true,
+        runValidators: true
+    }).exec();
+    res.redirect(`/admin/products/${product.slug}`);
 }
