@@ -1,0 +1,7 @@
+mixin orderForm(product = {})
+    .product__actions
+        .product__ordering
+            select 
+                each item in h.quantity
+                    option(value=item.qty) #{item.qty} #{item.unit}
+            button(type='submit') ORDER NOW!

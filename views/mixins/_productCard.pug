@@ -1,11 +1,12 @@
 mixin productCard(product = {})
-    .product
-        .product__details
-            h3= product.name
+    .product__details
+        h3 
+            a(href=`/products/${product.slug}`)= product.name
+        .item__details 
             div= product.description
-            div= product.price
-            div= product.thc
-            div= product.cbd
-        //- .product__ordering
-        //-     .product__actions
-        //-     button ORDER NOW!
+            span $#{product.price}
+            span #{product.thc}% THC
+            span #{product.cbd}% CBD
+        .item__details--pic
+            img(src=`/uploads/${product.photo}` width=200)
+    

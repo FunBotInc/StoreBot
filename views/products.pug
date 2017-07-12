@@ -2,11 +2,14 @@ extends layout
 
 include mixins/_productCard
 include mixins/_pagination
+include mixins/_orderForm
 
 block content
+    h2= title
     .inner
-        h2= title
-        .products
-            each product in products
+        each product in products
+            .products
                 +productCard(product)
-        +pagination(page, pages, count)
+                +orderForm(product)
+block footer
+    +pagination(page, pages, count, pugFile)
