@@ -9,41 +9,45 @@ const productSchema = new mongoose.Schema({
         required: 'Please enter a product name'
     },
     description: { 
-        type: STRING, 
+        type: String, 
         trim: true,
         required: 'Please enter a description'
     },
     price: { 
-        type: NUMBER,
+        type: Number,
         required: 'Please enter a Price'
     },
     thc: { 
-        type: NUMBER,
+        type: Number,
         required: 'Please enter a percentage in for the THC content'
     },
     cbd: {
-        type: NUMBER,
+        type: Number,
         required: 'Please enter a percentage in for the CBD content'
     },
-    slug: { type: STRING },
-    photo: [ STRING ],
-    tags: [ STRING ],
+    slug: String,
+    photo: String,
+    // tags: [ String ],
     created: {
         type: Date,
         default: Date.now
     }
-});
+},{
+        toJSON: { virtuals: true},
+        toObject: { virtuals: true }
+    }
+);
 
-storeSchema.pre('save', async function(next){
+productSchema.pre('save', async function(next){
     if(!this.isModified('name')){
         next();
         return;
     }
     this.slug = slug(this.name);
     const slugRegEx = new RegExp(`^(${this.slug})((-[0-9]*)?)$`, 'i');
-    const storesWithSlug = await this.constructor.find({slug: slugRegEx});
-    if(storesWithSlug.length){
-        this.slug = `${this.slug}-${storesWithSlug.length+1}`
+    const productsWithSlug = await this.constructor.find({slug: slugRegEx});
+    if(productsWithSlug.length){
+        this.slug = `${this.slug}-${productsWithSlug.length+1}`
     }
     next();
 });

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const app = require('./app');
-const PORT = process.env.PORT || 7777;
+
+const PORT = process.env.PORT || 8888;
 
 const [major, minor] = process.versions.node.split('.').map(parseFloat);
 if( major < 7 || (major === 7 && minor <= 5) ) {
@@ -8,7 +8,7 @@ if( major < 7 || (major === 7 && minor <= 5) ) {
     process.exit();
 }
 
-// require('dotenv').config({ path: 'variables.env'});
+require('dotenv').config({ path: 'variables.env'});
 
 mongoose.connect(process.env.DATABASE);
 mongoose.Promise = global.Promise;
@@ -22,7 +22,10 @@ db.once('open', () => {
 });
 
 // Import Models HERE!!!!!!!
+require('./models/Product');
+require('./models/Customer');
 
+const app = require('./app');
 app.set('port', PORT);
 app.listen(PORT, () => {
     console.log(`Express Server running on Port: ${PORT}`);

@@ -18,6 +18,9 @@ exports.flashValidationErrors = (err, req, res, next) => {
     res.redirect('back');
 };
 
+// Dev/Prod Errors from:
+// http://jilles.me/getting-the-express-app-js/
+
 exports.developmentErrors = (err, req, res, next) => {
     err.stack = err.stack || '';
     const errorDetails = {
