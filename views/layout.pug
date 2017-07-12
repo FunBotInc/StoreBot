@@ -8,10 +8,17 @@ html
     meta(charset='utf8')
   body
     block header
+      .header
+        .nav
+          each item in h.adminMenu
+            a(href=item.slug)= item.title
+        .account
       
     block content
         p This is the default!!!
 
+    block footer
+        p This is some more defaulty mcDefaultFace --- FOOTER
+
     block scripts
-      //- script(src=`https://maps.googleapis.com/maps/api/js?key=${process.env.MAP_KEY}&libraries=places`)
       script(src="/dist/App.bundle.js")

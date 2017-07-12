@@ -1,10 +1,11 @@
-mixin pagination(page, pages, count)
+mixin pagination(page, pages, count, baseUrl)
     .pagination
         .pagination__prev
+            - const rootUrl = baseUrl === 'adminProducts' ? '/admin/products' : '/products';
             if page > 1
-                a(href=`/products/page/${page - 1}`) Prev
+                a(href=`${rootUrl}/page/${page - 1}`) Prev
         .pagination__text
             p Page #{page} of #{pages} --- Total Product Results: #{count}
         .pagination__next
             if page < pages
-                a(href=`/products/page/${parseFloat(page) + 1}`) Next
+                a(href=`${rootUrl}/page/${parseFloat(page) + 1}`) Next
