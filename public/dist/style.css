@@ -1,0 +1,30 @@
+.products {
+    display: inline-flex;
+    width: 2fr;
+    margin: 10px 0px;
+    border-style: solid;
+    border-width: 4px;
+    border-color: #222;
+}
+
+.inner {
+    width: 98%;
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    grid-column-gap: 5px;
+}
+.products {
+    background-color: #bbb;
+}
+
+.header {
+    background-color: #cc88ee;
+}
+
+h2 {
+    display: block;
+}
+
+li.list__item {
+    display: block;
+}

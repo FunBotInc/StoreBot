@@ -1,0 +1,8 @@
+extends layout
+
+block content
+    each item in customers
+        p= item.firstname
+        p= item.lastname
+        p= item.email
+        p= item.license

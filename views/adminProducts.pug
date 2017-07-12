@@ -1,0 +1,30 @@
+extends layout
+
+include mixins/_productCard
+include mixins/_orderForm
+include mixins/_pagination
+
+block content
+    div.inner
+        table
+            thead
+                tr
+                    th Name
+                    th Description
+                    th THC %
+                    th CBD %
+                    th Photo
+                    th
+            tbody    
+                each item in products
+                    tr
+                        td= item.name
+                        td= item.description
+                        td= item.thc
+                        td= item.cbd
+                        td 
+                            img(src=`/uploads/${item.photo}` width=200)
+                        td
+                            a(href=`/admin/products/${item._id}/edit`) Edit / Updates
+block footer
+    +pagination(page, pages, count, pugFile)
