@@ -9,7 +9,9 @@ exports.quantity = [
 exports.adminMenu = [
     { slug: '/admin/add', title: 'Add Product'},
     { slug: '/admin/products', title: 'Product List'},
-    { slug: '/admin', title: 'Admin Panel'}
+    { slug: '/admin', title: 'Admin Panel'},
+    { slug: '/admin/customers', title: 'Customer List'},
+    { slug: '/admin/customers/add', title: 'Add Customer'}
 ]
 exports.userMenu = [
     { slug: '/products', title: 'HomePage'},

@@ -31,4 +31,12 @@ router.post('/admin/add/:id',
     catchErrors( pageController.updateProduct )
 );
 
+router.get('/admin/customers', catchErrors( customerController.getCustomers ));
+
+router.get('/admin/customers/add', customerController.addCustomer);
+router.post('/admin/customers/add',
+    catchErrors( customerController.createCustomer )
+);
+
+
 module.exports = router;
