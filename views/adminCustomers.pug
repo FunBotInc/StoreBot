@@ -1,8 +1,21 @@
 extends layout
 
 block content
-    each item in customers
-        p= item.firstname
-        p= item.lastname
-        p= item.email
-        p= item.license
+    .inner
+        table
+            thead
+                tr
+                    th Name
+                    th Email
+                    th License
+                    th Address
+                    th
+            tbody    
+                each item in customers
+                    tr
+                        td #{item.firstname} #{item.lastname}
+                        td= item.email
+                        td= item.license
+                        td #{item.streetnumber} #{item.streetname} #{item.city} #{item.state} #{item.zipcode}
+                        td
+                            a(href=`/admin/customers/${item._id}/edit`) Edit / Update

@@ -16,18 +16,13 @@ const customerSchema = new mongoose.Schema({
         trim: true
     },
     streetnumber: {
-        type: Number,
+        type: String,
         required: 'Please input a street number, PO Boxes cannot be used',
         trim: true
     },
     streetname: {
         type: String,
-        required: 'Please input a street name, include cardinal direction',
-        trim: true
-    },
-    streettype: {
-        type: String,
-        required: 'Please input a street type. ex: Ave., St., Rd.....',
+        required: 'Please input a street name',
         trim: true
     },
     city: {
@@ -41,7 +36,7 @@ const customerSchema = new mongoose.Schema({
         trim: true
     },
     zipcode: {
-        type: Number,
+        type: String,
         required: 'Please provide your 5 digit zipcode',
         trim: true
     },

@@ -12,7 +12,18 @@ exports.getCustomers = async (req, res) => {
         .sort({ lastname: 1 });
     const countPromise = Customer.count();
 
-    const [customer, count] = await Promise.all([ customersPromise, countPromise ]);
+    const [customers, count] = await Promise.all([ customersPromise, countPromise ]);
     const pages = Math.ceil(count / limit);
-    res.render('adminCustomers', {title: 'Customer List', customer, count, page, pages});
+    res.render('adminCustomers', {title: 'Customer List', customers, count, page, pages});
+};
+
+exports.addCustomer = (req, res) => {
+    res.render('adminEditCustomer', {title: 'Add Customer'});
 }
+
+exports.createCustomer = async (req, res) => {
+    const customer = await (new Customer(req.body)).save();
+    req.flash('info', 'Success!! a new customer was added!');
+    res.redirect('/admin/customers');
+};
+
