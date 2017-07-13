@@ -70,10 +70,6 @@ exports.getProductBySlug = async (req, res, next) => {
     res.render('product', {title: `${product.name}`, product});
 };
 
-
-
-
-
 exports.addProduct = (req, res) => {
     res.render('editProduct', {title: 'Add/Edit Product'});
 };
