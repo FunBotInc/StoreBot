@@ -23,7 +23,9 @@ db.once('open', () => {
 
 // Import Models HERE!!!!!!!
 require('./models/Product');
-require('./models/Customer');
+require('./models/Account');
+
+
 
 const app = require('./app');
 app.set('port', PORT);

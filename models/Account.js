@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const validator = require('validator');
 const slug = require('slugs');
-const mongodbErrorHandler = require('mongoose-mongodb-errors')
+const mongodbErrorHandler = require('mongoose-mongodb-errors');
+const passportLocalMongoose = require('passport-local-mongoose');
 
-const customerSchema = new mongoose.Schema({
+const accountSchema = new mongoose.Schema({
     firstname: {
         type: String,
         required: 'Please fill out your first name',
@@ -52,9 +53,15 @@ const customerSchema = new mongoose.Schema({
         type: String,
         required: 'Please provide your Oregon state license related to medicinal / recreational / wholesale / manufacturing of marijuana and/or marijuana related products',
         trim: true
+    },
+    role: {
+        type: String,
+        required: 'A role is required: Admin or Customer',
+        trim: true
     }
 });
 
-customerSchema.plugin(mongodbErrorHandler);
+accountSchema.plugin(mongodbErrorHandler);
+accountSchema.plugin(passportLocalMongoose,{ usernameField: 'email' });
 
-module.exports = mongoose.model('Customer', customerSchema);
+module.exports = mongoose.model('Account', accountSchema);

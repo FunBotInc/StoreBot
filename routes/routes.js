@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const pageController = require('../controllers/pageController');
-const customerController = require('../controllers/customerController');
+const accountController = require('../controllers/accountController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
 // get ALL products and paginate
 router.get('/', catchErrors( pageController.getProducts ));
+// router.get('/account', catchErrors( accountController.getAccounts ));
 router.get('/products', catchErrors( pageController.getProducts ));
 router.get('/products/page/:page', catchErrors( pageController.getProducts ));
 router.get('/products/:slug', catchErrors( pageController.getProductBySlug ));
@@ -31,11 +32,11 @@ router.post('/admin/add/:id',
     catchErrors( pageController.updateProduct )
 );
 
-router.get('/admin/customers', catchErrors( customerController.getCustomers ));
+router.get('/admin/accounts', catchErrors( accountController.getAccounts ));
 
-router.get('/admin/customers/add', customerController.addCustomer);
-router.post('/admin/customers/add',
-    catchErrors( customerController.createCustomer )
+router.get('/admin/accounts/add', accountController.addAccount);
+router.post('/admin/accounts/add',
+    catchErrors( accountController.createAccount )
 );
 
 

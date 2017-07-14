@@ -1,0 +1,24 @@
+mixin accountForm(account = {})
+    form(action=`/admin/accounts/add/${account._id || ''}` method='POST')
+        label(for='firstname') First Name
+        input(type='text' name='firstname' value=account.firstname placeholder='ex: Jon')
+        label(for='lastname') Last Name
+        input(type='text' name='lastname' value=account.lastname placeholder='ex: Doe')
+        label(for='streetnumber') Street Number
+        input(type='text' name='streetnumber' value=account.streetnumber placeholder='ex: 112...')
+        label(for='streetname') Street Name
+        input(type='text' name='streetname' value=account.streetname placeholder='ex: SE 14th Street...')
+        label(for='city') City 
+        input(type='text' name='city' value=account.city placeholder='ex: Ashland...')
+        label(for='state') State
+        input(type='text' name='state' value=account.state placeholder='ex: OR..')
+        label(for='zipcode') Zipcode 
+        input(type='text' name='zipcode' value=account.zipcode placeholder='ex: 97520...')
+        label(for='email') Email
+        input(type='text' name='email' value=account.email)
+        label(for='license') 14 Digit Oregon License number
+        input(type='text' name='license' value=account.license placeholder='ex: 0201001234bb99...')
+        input(type='submit' value='Save')
+        if customer._id
+            a(href="javascript: history.go(-1)")
+                button(type='button') Go Back
