@@ -1,5 +1,5 @@
 mixin accountForm(account = {})
-    form(action=`/admin/accounts/add/${account._id || ''}` method='POST')
+    form.form(action=`/admin/accounts/add/${account._id || ''}` method='POST')
         label(for='firstname') First Name
         input(type='text' name='firstname' value=account.firstname placeholder='ex: Jon')
         label(for='lastname') Last Name
@@ -16,9 +16,21 @@ mixin accountForm(account = {})
         input(type='text' name='zipcode' value=account.zipcode placeholder='ex: 97520...')
         label(for='email') Email
         input(type='text' name='email' value=account.email)
+        label(for='phone') Phone Number
+        input(type='tel' name='phone' value=account.phone)
         label(for='license') 14 Digit Oregon License number
         input(type='text' name='license' value=account.license placeholder='ex: 0201001234bb99...')
+        label(for='role') Role
+        select(name='role') Role
+            if account.role === 'admin'
+                each item in h.roles
+                    if account.role === item
+                        option(value=item selected) #{item}
+                    else
+                        option(value=item) #{item}
+            else
+                option(value='vendor') Vendor
         input(type='submit' value='Save')
-        if customer._id
+        if account._id
             a(href="javascript: history.go(-1)")
                 button(type='button') Go Back
