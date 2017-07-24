@@ -2,11 +2,12 @@ mixin productCard(product = {})
     .product__details
         h3 
             a(href=`/products/${product.slug}`)= product.name
-        .item__details 
-            div= product.description
-            span $#{product.price}
-            span #{product.thc}% THC
-            span #{product.cbd}% CBD
         .item__details--pic
             img(src=`/uploads/${product.photo}` width=200)
+        .item__details 
+            div= product.description
+            p $#{product.price}
+            p THC%: #{product.thc}
+            p CBD %: #{product.cbd}
+        
     

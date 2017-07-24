@@ -1,5 +1,5 @@
 mixin productForm(product = {})
-    form(action=`/admin/add/${product._id || ''}` method='POST' enctype='multipart/form-data')
+    form.form(action=`/admin/add/${product._id || ''}` method='POST' enctype='multipart/form-data')
         label(for='name') Name
         input(type='text' name='name' value=product.name)
         label(for='description') Description
