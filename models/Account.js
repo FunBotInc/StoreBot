@@ -56,8 +56,18 @@ const accountSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        required: 'A role is required: Admin or Customer',
-        trim: true
+        possibleValues: ['admin', 'vendor'],
+        required: 'Please provide a role of either "admin" or "vendor"'
+    },
+    phone: {
+        type: String,
+        validate: {
+            validator: function(v) {
+                return /\d{3}-\d{3}-\d{4}/.test(v);
+            },
+            message: '{Value} is not a valid phone number'
+        },
+        required: [true, 'Please provide a phone number']
     }
 });
 

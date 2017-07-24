@@ -26,7 +26,7 @@ const productSchema = new mongoose.Schema({
         required: 'Please enter a percentage in for the CBD content'
     },
     slug: String,
-    photo: String,
+    photo: [String],
     // tags: [ String ],
     created: {
         type: Date,
