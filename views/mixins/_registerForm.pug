@@ -1,0 +1,31 @@
+mixin registerForm()
+    form.form(action='/register' method='POST')
+        label(for='firstname') First Name
+        input(type='text' name='firstname' placeholder='ex: Jon')
+        label(for='lastname') Last Name
+        input(type='text' name='lastname' placeholder='ex: Doe')
+        label(for='streetnumber') Street Number
+        input(type='text' name='streetnumber' placeholder='ex: 112...')
+        label(for='streetname') Street Name
+        input(type='text' name='streetname' placeholder='ex: SE 14th Street...')
+        label(for='city') City 
+        input(type='text' name='city' placeholder='ex: Ashland...')
+        label(for='state') State
+        input(type='text' name='state'  placeholder='ex: OR..')
+        label(for='zipcode') Zipcode 
+        input(type='text' name='zipcode' placeholder='ex: 97520...')
+        label(for='email') Email
+        input(type='text' name='email')
+        label(for='phone') Phone Number
+        input(type='tel' name='phone')
+        label(for='license') 14 Digit Oregon License number
+        input(type='text' name='license' placeholder='ex: 0201001234bb99...')
+        label(for='role') Role
+        select(name='role')
+            option(value='vendor') Vendor
+        label(for='password') Password
+        input(type='password' name='password')
+        label(for='confirm-password') Confirm Password
+        input(type='password' name='confirm-password')
+
+        input(type='submit' value='Register')
